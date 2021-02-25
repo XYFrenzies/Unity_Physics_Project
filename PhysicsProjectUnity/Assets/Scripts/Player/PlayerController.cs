@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         var dir = m_controls.Player.Movement.ReadValue<Vector2>();
+        //if (dir.x != 0)
+        //{
+
+        //}
 
         if (dir.x != 0 || dir.y != 0)
         {
