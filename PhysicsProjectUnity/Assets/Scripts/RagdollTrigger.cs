@@ -12,4 +12,13 @@ public class RagdollTrigger : MonoBehaviour
             r.RagdollOn = true;
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Ragdoll r = collision.gameObject.GetComponentInParent<Ragdoll>();
+    //    if (r != null)
+    //    {
+    //        r.RagdollOn = true;
+    //    }
+    //}
 }
