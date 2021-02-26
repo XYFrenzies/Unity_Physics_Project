@@ -18,7 +18,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space")) 
+        if (Input.GetMouseButtonDown(0)) 
         {
             m_rb.gameObject.SetActive(true);
             m_rb.velocity = Vector3.zero;

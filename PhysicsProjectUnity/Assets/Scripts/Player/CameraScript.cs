@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour
 
         transform.eulerAngles += Vector3.up * x * m_rotationSpeed;
 
-        curXRot += y * m_rotationSpeed;
+        curXRot -= y * m_rotationSpeed;
         curXRot = Mathf.Clamp(curXRot, minXRot, maxXRot);
 
 

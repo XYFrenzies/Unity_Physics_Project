@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RagdollTrigger : MonoBehaviour
-{
+{  
     private void OnTriggerEnter(Collider other)
     {
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();
         if (r != null)
         {
             r.RagdollOn = true;
+
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Ragdoll r = collision.gameObject.GetComponentInParent<Ragdoll>();
-    //    if (r != null)
-    //    {
-    //        r.RagdollOn = true;
-    //    }
-    //}
 }
