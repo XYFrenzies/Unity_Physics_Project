@@ -1,33 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1485329419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431312300828754832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fb63e4383830a419771b8362d0388b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moveSpeed: 1
-  m_ragDollSpeed: 30
-  m_player: {fileID: 0}
-  m_wB: {fileID: 0}
-  rigidbodies:
-  - {fileID: 1195581245}
-  - {fileID: 1498575997}
-  - {fileID: 741197541}
-  - {fileID: 630382902}
-  - {fileID: 650739278}
-  - {fileID: 1739291375}
-  - {fileID: 1550102861}
-  - {fileID: 891806650}
-  - {fileID: 1199093679}
-  - {fileID: 250373230}
-  - {fileID: 2095624105}
 --- !u!54 &47137950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44,6 +16,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1485329419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431312300828754832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fb63e4383830a419771b8362d0388b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moveSpeed: 1
+  m_player: {fileID: 0}
+  rigidbodies:
+  - {fileID: 1195581245}
+  - {fileID: 1498575997}
+  - {fileID: 741197541}
+  - {fileID: 630382902}
+  - {fileID: 650739278}
+  - {fileID: 1739291375}
+  - {fileID: 1550102861}
+  - {fileID: 891806650}
+  - {fileID: 1199093679}
+  - {fileID: 250373230}
+  - {fileID: 2095624105}
+  isCollided: 0
 --- !u!54 &630382902
 Rigidbody:
   m_ObjectHideFlags: 0

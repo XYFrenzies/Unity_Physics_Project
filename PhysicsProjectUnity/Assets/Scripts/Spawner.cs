@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Transform prefab;
-    public Transform spawner;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    [SerializeField] private Transform prefab = null;
+    [SerializeField] private Transform spawnLoc = null;
+    [SerializeField] private GameObject m_player = null;
+    private float timer = 0;
+    [SerializeField] [Range(0, 2.0f)]private float spawnTimer = 0.0f;
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey == true)
+        if (timer >= spawnTimer)
         {
-            Instantiate(prefab, transform.position, Quaternion.identity);
-           // Instantiate(spawner, transform.position - new Vector3(Random.Range(-7000, 7000), 0, Random.Range(-7000, 7000)), Quaternion.identity);
+            Transform obj = Instantiate(prefab, spawnLoc.position, Quaternion.identity);
+            obj.gameObject.GetComponent<Ragdoll>().m_player = m_player;
+            timer = 0;
         }
-        //else
-        //{
-        //    timer += Time.deltaTime;
-        //}
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 }

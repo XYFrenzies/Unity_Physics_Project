@@ -6,13 +6,14 @@ using UnityEngine;
 public class Ragdoll : MonoBehaviour
 {
     [SerializeField] private float m_moveSpeed = 0;
-    [SerializeField] private float m_ragDollSpeed = 10;
-    [SerializeField] private Transform m_player = null;
-    [SerializeField] private Rigidbody m_wB = null;
-    private Animator animator = null;
-    public List<Rigidbody> rigidbodies = new List<Rigidbody>();
 
-    private bool isCollided = false;
+    [SerializeField] public GameObject m_player = null;
+    private Animator animator = null;
+    [SerializeField]public List<Rigidbody> rigidbodies = new List<Rigidbody>();
+
+    [HideInInspector]public bool isCollided = false;
+    [HideInInspector]public bool isHit = false;
+    [HideInInspector]public static Ragdoll sharedInheritance;
 
     public bool RagdollOn
     {
@@ -24,8 +25,6 @@ public class Ragdoll : MonoBehaviour
             foreach (Rigidbody r in rigidbodies) 
             {
                 r.isKinematic = !value;
-                r.AddForce(m_wB.velocity * m_ragDollSpeed);
-
             }
             isCollided = true;
         }
@@ -45,7 +44,11 @@ public class Ragdoll : MonoBehaviour
 
     void Update()
     {
-        if (!isCollided)
-            transform.position = Vector3.MoveTowards(transform.position, m_player.position, m_moveSpeed * Time.deltaTime);
+        if (!isCollided && !isHit)
+            transform.position = Vector3.MoveTowards(transform.position, m_player.transform.position, m_moveSpeed * Time.deltaTime);
+        else
+        {
+
+        }
     }
 }
