@@ -13,7 +13,6 @@ public class ObjectPooling : MonoBehaviour
     public static ObjectPooling SharedInstance;//A instance of the calss.
     private List<GameObject> pooledObjects;//A list of pooled items
     public List<ObjectPoolItem> itemsToPool;//The types of items to pool
-    public int amountToStart;//Variable to determine how many objects can be used at the start of the game.
     [HideInInspector] public List<GameObject> itemsToStore;//In this, you can have extra ammo to pickup.
     [HideInInspector] public bool recharge = false;//recharges to the 
     private int objectsInHand;//determines how many objects are remaining.
@@ -69,49 +68,5 @@ public class ObjectPooling : MonoBehaviour
                 objectsInHand -= 1;
         }
         return objectsInHand;
-    }
-    //This will be used for pickup. When an object is picked up, a new instantiated object is added.
-    public void AddNewObject(GameObject distraction)//Adds the object to the list depending on if it is in the stored items list.
-    {
-        pooledObjects.Add(distraction);
-
-        for (int i = 0; i < itemsToStore.Count; i++)//Loops through the list.
-        {
-            if (itemsToStore[i] == distraction)//Check if the distraction is in the list.
-            {
-                itemsToStore.RemoveAt(i);
-                recharge = true;
-            }
-        }
-    }
-    public void RemoveObjects(GameObject distraction)//Removes the object from a list with the parameter of a gameobjects
-    {
-        itemsToStore.Add(distraction);
-        for (int i = 0; i < pooledObjects.Count; i++)//Loops through the list of pooled items to remove.
-        {
-            if (pooledObjects[i] == distraction)
-                pooledObjects.RemoveAt(i);
-        }
-    }
-    public void SaveObjects()//This is to save the pooled amounts of objects inicially if the starting amount is different to the pooled amount.
-    {
-        for (int i = pooledObjects.Count; i > amountToStart; i--)//Compares how many are in the list and loops through it in contrast to the amount to start with.
-        {
-            itemsToStore.Add(pooledObjects[i - 1]);//Stores the extra distractions in a stored list
-            pooledObjects.RemoveAt(i - 1);//Removed it from the original list.
-        }
-    }
-    public GameObject GetOneStoredObject()//Finds one instance of the object in the heirachy that is stored.
-    {
-        GameObject obj;
-        if (itemsToStore != null)//if the list is empty, return null
-        {
-            for (int i = 0; i < itemsToStore.Count; i++)//loop through to find the first stored object.
-            {
-                obj = itemsToStore[i];
-                return obj;
-            }
-        }
-        return null;
     }
 }

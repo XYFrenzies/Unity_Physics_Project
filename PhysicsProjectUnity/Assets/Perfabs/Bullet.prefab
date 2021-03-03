@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8d0eac4602dd044b119d1b7d5cb507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ragDollSpeed: 100
+  m_ragDollSpeed: 25
 --- !u!54 &4067017940525858928
 Rigidbody:
   m_ObjectHideFlags: 0
