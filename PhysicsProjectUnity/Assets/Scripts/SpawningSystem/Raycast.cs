@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class Raycast : MonoBehaviour
 {
     [SerializeField] private Image m_img = null;
-    [SerializeField] private float m_moveSpeed = 1;
     Color newCol;
-
+    public static Raycast sharedInstance;
+    [HideInInspector] public bool isObjectMoveable;
+    private void Start()
+    {
+        sharedInstance = this;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -22,23 +26,17 @@ public class Raycast : MonoBehaviour
             else if (obj.GetComponent<BoxCollider>() == true)
             {
                 newCol = Color.green;
-                if (obj.GetComponentInParent<Rigidbody>() == true)
+                if (obj.GetComponentInParent<Rigidbody>() == true && obj.CompareTag("Moveable"))
                 {
-                    if (Input.GetMouseButtonDown(1))
-                    {
-                        Rigidbody rb = obj.GetComponentInParent<Rigidbody>();
-                        rb.AddForce(Camera.main.transform.forward * m_moveSpeed);
-                    }
+                    obj.GetComponentInParent<PickupAndPush>().isMoveable = true;
                 }
-
+            }
+            else
+            {
+                newCol = Color.white;
             }
 
-            else
-                newCol = hitInfo.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
-
             m_img.color = newCol;
-
-            
         }
     }
 }

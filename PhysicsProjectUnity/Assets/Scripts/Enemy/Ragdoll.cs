@@ -81,7 +81,6 @@ public class Ragdoll : MonoBehaviour
         {
             if (gameObject == Spawner.enemiesSpawning[i - 1])
             {
-                m_moveSpeed += 1;
                 RagdollOn = false;
                 ReturnToNormal();
                 gameObject.SetActive(false);

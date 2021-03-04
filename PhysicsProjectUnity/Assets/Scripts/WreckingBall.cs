@@ -27,6 +27,8 @@ public class WreckingBall : MonoBehaviour
             foreach(Rigidbody rb in rigidbodies)
             {
                 rb.isKinematic = false;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
             m_txt.text = "";
             wBStarted = true;
@@ -37,15 +39,18 @@ public class WreckingBall : MonoBehaviour
             timer += Time.fixedDeltaTime;
             if (m_timerForTrap <= timer)
             {
-                foreach (Rigidbody rb in rigidbodies)
-                {
-                    rb.isKinematic = false;
-                }
                 for (int i = 0; i < rigidbodies.Length; i++)
                 {
                     rigidbodies[i].gameObject.transform.position = obj[i];
                 }
+                foreach (Rigidbody rb in rigidbodies)
+                {
+                    rb.velocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+                    rb.isKinematic = true;
+                }
                 wBStarted = false;
+                timer = 0;
             }
         }
     }

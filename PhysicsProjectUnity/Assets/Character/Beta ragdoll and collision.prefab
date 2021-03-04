@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fb63e4383830a419771b8362d0388b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 1
+  m_moveSpeed: 5
   m_player: {fileID: 0}
   rigidbodies:
   - {fileID: 1195581245}
@@ -44,6 +44,9 @@ MonoBehaviour:
   - {fileID: 2095624105}
   isCollided: 0
   isHit: 0
+  isRocket: 0
+  hasSpawnedThisRound: 0
+  hasAlreadySpawned: 0
 --- !u!54 &630382902
 Rigidbody:
   m_ObjectHideFlags: 0

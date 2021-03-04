@@ -9,7 +9,7 @@ public class RagdollTrigger : MonoBehaviour
     {
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();
         Rigidbody objRB = GetComponent<Rigidbody>();
-        if (other.CompareTag("Enemy") && r != null && this.CompareTag("Bullet"))
+        if (other.CompareTag("Enemy") && r != null && (this.CompareTag("Bullet") || this.CompareTag("WB")))
         {
             r.RagdollOn = true;
             if (r.isCollided == true && r.isHit == false)
