@@ -43,6 +43,7 @@ MonoBehaviour:
   - {fileID: 250373230}
   - {fileID: 2095624105}
   isCollided: 0
+  isHit: 0
 --- !u!54 &630382902
 Rigidbody:
   m_ObjectHideFlags: 0

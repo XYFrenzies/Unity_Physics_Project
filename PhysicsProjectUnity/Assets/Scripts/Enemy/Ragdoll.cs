@@ -10,11 +10,14 @@ public class Ragdoll : MonoBehaviour
 
     [SerializeField] public GameObject m_player = null;
     private Animator animator = null;
-    [SerializeField]public List<Rigidbody> rigidbodies = new List<Rigidbody>();
+    [SerializeField] public List<Rigidbody> rigidbodies = new List<Rigidbody>();
 
-    [HideInInspector]public bool isCollided = false;
-    [HideInInspector]public bool isHit = false;
-    [HideInInspector]public static Ragdoll sharedInheritance;
+    [HideInInspector] public bool isCollided = false;
+    [HideInInspector] public bool isHit = false;
+    [HideInInspector] public bool isRocket = false;
+    [HideInInspector] public bool hasSpawnedThisRound = false;
+    [HideInInspector] public bool hasAlreadySpawned = false;
+    [HideInInspector] public static Ragdoll sharedInheritance;
     private float m_timer = 0;
     public bool RagdollOn
     {
@@ -49,24 +52,17 @@ public class Ragdoll : MonoBehaviour
         else
         {
             m_timer += Time.fixedDeltaTime;
-            if (m_timer >= 10.0f)
+            if (m_timer >= 3.0f && !isRocket)
             {
-                int value = Spawner.enemiesSpawning.Count;
-                for (int i = 1; i < value; i++)
-                {
-                    if (gameObject == Spawner.enemiesSpawning[i - 1])
-                    {
-                        RagdollOn = false;
-                        ReturnToNormal();
-                        gameObject.SetActive(false);
-                        Spawner.enemiesSpawning.RemoveAt(i - 1);
-                        isCollided = false;                            
-                        isHit = false;
-                    }
-                }
-                m_timer = 0;
+                RemoveRagdollFromScene();
+
+            }
+            else if (m_timer >= 8.0f)
+            {
+                RemoveRagdollFromScene();
             }
         }
+
     }
     void ReturnToNormal() 
     {
@@ -75,6 +71,28 @@ public class Ragdoll : MonoBehaviour
             r.isKinematic = true;
             r.gameObject.tag = "Enemy";
         }
-        m_moveSpeed += 1;
+        
+    }
+
+    void RemoveRagdollFromScene() 
+    {
+        int value = Spawner.enemiesSpawning.Count;
+        for (int i = 1; i < value; i++)
+        {
+            if (gameObject == Spawner.enemiesSpawning[i - 1])
+            {
+                m_moveSpeed += 1;
+                RagdollOn = false;
+                ReturnToNormal();
+                gameObject.SetActive(false);
+                Spawner.enemiesSpawning.RemoveAt(i - 1);
+                isCollided = false;
+                isHit = false;
+                RoundSystem.sharedInstance.pointTotal += 10;
+                RoundSystem.sharedInstance.enemiesRemaining -= 1;
+                isRocket = false;
+            }
+        }
+        m_timer = 0;
     }
 }

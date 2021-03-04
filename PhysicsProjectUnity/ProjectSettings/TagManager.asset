@@ -8,6 +8,8 @@ TagManager:
   - ShotPosition
   - Bullet
   - Elavator
+  - Rocket
+  - Barrier
   layers:
   - Default
   - TransparentFX

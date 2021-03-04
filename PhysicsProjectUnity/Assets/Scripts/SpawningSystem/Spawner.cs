@@ -27,9 +27,10 @@ public class Spawner : MonoBehaviour
                 GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Enemy");
                 if (obj != null)
                 {
+                    Ragdoll rag = obj.gameObject.GetComponent<Ragdoll>();
                     obj.transform.position = spawnLoc.transform.position;
                     obj.transform.rotation = spawnLoc.transform.rotation;
-                    obj.gameObject.GetComponent<Ragdoll>().m_player = m_player;
+                    rag.m_player = m_player;
                     obj.gameObject.SetActive(true);
                     enemiesSpawning.Add(obj);
                 }
