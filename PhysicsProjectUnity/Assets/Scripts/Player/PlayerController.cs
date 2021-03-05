@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_maxRunningSpeed = 10.0f;
     [SerializeField] private float pushPower = 2.0f;
     private Vector3 playerVelocity;
-    private float gravityValue = -9.81f;
+    [SerializeField] private float gravityValue = -4.81f;
     private CharacterController controller = null;
     private InputManager m_controls;
+    private float m_timer = 2;
+    private float deltaTimer = 0;
+    private bool hasHitAnim = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +31,35 @@ public class PlayerController : MonoBehaviour
         if ((dir.x != 0 || dir.y != 0))
         {
             Vector3 input = transform.right * dir.x + transform.forward * dir.y;  //This is for the movement of the player in the certain direction.
-            if(!Input.GetKey(KeyCode.LeftShift))
+            if (!Input.GetKey(KeyCode.LeftShift))
                 controller.Move(input * Time.fixedDeltaTime * m_MovementSpeed);
-            else if(Input.GetKey(KeyCode.LeftShift))
+            else if (Input.GetKey(KeyCode.LeftShift))
                 controller.Move(input * Time.fixedDeltaTime * (m_MovementSpeed + m_maxRunningSpeed));
-            playerVelocity.y += gravityValue * Time.fixedDeltaTime;
-            controller.Move(playerVelocity * Time.fixedDeltaTime);
         }
+        if (controller.isGrounded == true)
+            playerVelocity = Vector3.zero;
+        playerVelocity.y += gravityValue * Time.fixedDeltaTime;
+        controller.Move(playerVelocity * Time.fixedDeltaTime);
+        if (hasHitAnim)
+            deltaTimer += Time.fixedDeltaTime;
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.gameObject.GetComponent<Animation>() &&
+            !hit.gameObject.GetComponent<ConfigurableJoint>())
+        {
+            if (!hit.gameObject.GetComponent<Animation>().IsPlaying("Moving 2nd Level"))
+                hasHitAnim = false;
+            if (!hasHitAnim)
+                hasHitAnim = true;
+            if (m_timer <= deltaTimer)
+            {
+                hit.gameObject.GetComponent<Animation>().Play();
+                deltaTimer = 0;
+            }
+        }
+
+
         Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
             return;
@@ -45,5 +67,7 @@ public class PlayerController : MonoBehaviour
             return;
         Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
         body.velocity = pushDirection * pushPower;
+
+
     }
 }

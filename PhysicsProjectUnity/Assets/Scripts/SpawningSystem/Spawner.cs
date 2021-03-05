@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (timer >= spawnTimer)
@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
         }
     }
 }

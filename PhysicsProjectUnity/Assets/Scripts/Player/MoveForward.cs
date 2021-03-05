@@ -8,9 +8,9 @@ public class MoveForward : MonoBehaviour
     [SerializeField] private float m_timer = 0;
     private float deltaTimer = 0;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        deltaTimer += Time.deltaTime;
+        deltaTimer += Time.fixedDeltaTime;
         if (Input.GetMouseButton(0) && deltaTimer >= m_timer) 
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Bullet");

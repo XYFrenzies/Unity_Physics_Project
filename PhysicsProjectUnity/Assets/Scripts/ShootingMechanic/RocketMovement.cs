@@ -9,13 +9,11 @@ public class RocketMovement : MonoBehaviour
     [SerializeField] public float explosiveRadius = 10f;
     private Rigidbody m_rb = null;
     private bool isShooting = false;
-    private LayerMask layerMask;
     public static RocketMovement sharedInstance;
     // Start is called before the first frame update
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
-        layerMask = LayerMask.GetMask("Barrier");
         sharedInstance = this;
     }
 

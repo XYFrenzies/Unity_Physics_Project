@@ -14,7 +14,6 @@ public class RagdollTrigger : MonoBehaviour
             r.RagdollOn = true;
             if (r.isCollided == true && r.isHit == false)
             {
-                RoundSystem.sharedInstance.pointTotal += 10;
                 foreach (Rigidbody rb in r.rigidbodies)
                 {
                     if (this.CompareTag("Bullet"))
@@ -25,14 +24,18 @@ public class RagdollTrigger : MonoBehaviour
                 }
                 if (objRB.CompareTag("Bullet"))
                     objRB.gameObject.SetActive(false);
-                RoundSystem.sharedInstance.enemiesRemaining -= 1;
             }
 
         }
         else if (this.CompareTag("Rocket"))
         {
-            Collider[] collider = Physics.OverlapSphere(gameObject.transform.position, RocketMovement.sharedInstance.explosiveRadius, ~LayerMask.GetMask("Barrier"));            
+            Collider[] collider = Physics.OverlapSphere(gameObject.transform.position, RocketMovement.sharedInstance.explosiveRadius, ~LayerMask.GetMask("Barrier"));
             RocketMovement.sharedInstance.MultiForce(collider);
+        }
+        else if (this.CompareTag("WB"))
+        {
+            Collider[] collider = Physics.OverlapSphere(gameObject.transform.position, WreckingBall.sharedInstance.explosiveRadius, ~LayerMask.GetMask("Barrier"));
+            WreckingBall.sharedInstance.MultiForce(collider);
         }
     }
 }

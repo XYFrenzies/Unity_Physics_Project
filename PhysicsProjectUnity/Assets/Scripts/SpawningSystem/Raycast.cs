@@ -14,7 +14,7 @@ public class Raycast : MonoBehaviour
         sharedInstance = this;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

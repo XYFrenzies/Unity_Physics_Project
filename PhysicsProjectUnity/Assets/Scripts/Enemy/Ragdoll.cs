@@ -17,6 +17,7 @@ public class Ragdoll : MonoBehaviour
     [HideInInspector] public bool isRocket = false;
     [HideInInspector] public bool hasSpawnedThisRound = false;
     [HideInInspector] public bool hasAlreadySpawned = false;
+    [HideInInspector] public bool isTouchingObj = false;
     [HideInInspector] public static Ragdoll sharedInheritance;
     private float m_timer = 0;
     public bool RagdollOn
@@ -45,10 +46,14 @@ public class Ragdoll : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isCollided && !isHit)
-            transform.position = Vector3.MoveTowards(transform.position, m_player.transform.position, m_moveSpeed * Time.deltaTime);
+        {
+            if (!isTouchingObj)
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(m_player.transform.position.x, 0, m_player.transform.position.z), m_moveSpeed * Time.fixedDeltaTime);
+        }
+
         else
         {
             m_timer += Time.fixedDeltaTime;
@@ -83,6 +88,7 @@ public class Ragdoll : MonoBehaviour
             {
                 RagdollOn = false;
                 ReturnToNormal();
+                m_moveSpeed += 1;
                 gameObject.SetActive(false);
                 Spawner.enemiesSpawning.RemoveAt(i - 1);
                 isCollided = false;
@@ -91,6 +97,19 @@ public class Ragdoll : MonoBehaviour
                 RoundSystem.sharedInstance.enemiesRemaining -= 1;
                 isRocket = false;
             }
+        }
+        if (value == 1)
+        {
+            RagdollOn = false;
+            ReturnToNormal();
+            m_moveSpeed += 1;
+            gameObject.SetActive(false);
+            Spawner.enemiesSpawning.RemoveAt(0);
+            isCollided = false;
+            isHit = false;
+            RoundSystem.sharedInstance.pointTotal += 10;
+            RoundSystem.sharedInstance.enemiesRemaining -= 1;
+            isRocket = false;
         }
         m_timer = 0;
     }

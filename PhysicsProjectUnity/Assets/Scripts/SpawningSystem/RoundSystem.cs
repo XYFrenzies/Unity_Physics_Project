@@ -25,7 +25,7 @@ public class RoundSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isNewRound == true)
         {
