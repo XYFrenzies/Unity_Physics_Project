@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float m_hitBuffer = 5.0f;
     private float deltaTimer = 0;
     private bool isHit = false;
+    /// <summary>
+    /// Checks if there is any health left, if not the player will be sent ot the game over screen. Otherwise the timer for the hit buffer will go up.
+    /// </summary>
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +32,10 @@ public class PlayerHealth : MonoBehaviour
             deltaTimer = 0;
         }
     }
+    /// <summary>
+    /// if the trigger is with the enemy, the player will take a certain amount of health and the image (for now its an image instead of a slider) will go down.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -36,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
             if (isHit == false)
             {
                 health -= damage;
-                healthBarImg.rectTransform.localScale += new Vector3(1.5f, 0, 0);
+                healthBarImg.rectTransform.localScale += new Vector3(0.75f, 0, 0);
                 isHit = true;
             }
             Ragdoll rag = other.gameObject.GetComponentInParent<Ragdoll>();
@@ -44,6 +51,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
+    /// <summary>
+    /// To fix an issue that has occured with the enemies going into the player, the enemies will for now on sit outside the character controller of the player.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))

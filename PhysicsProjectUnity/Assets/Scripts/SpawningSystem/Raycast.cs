@@ -13,6 +13,10 @@ public class Raycast : MonoBehaviour
     {
         sharedInstance = this;
     }
+    /// <summary>
+    /// A ray from the camera outwards will detect a hit. If the hit is the enemy, the crosshair will turn red, 
+    /// otherwise it will turn white or green depending if its a rigidbody or not
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {

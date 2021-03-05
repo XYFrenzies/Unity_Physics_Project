@@ -10,16 +10,21 @@ public class Spawner : MonoBehaviour
     [SerializeField] [Range(0, 2.0f)]private float spawnTimer = 0.0f;
     public static Spawner sharedInstance;
     [HideInInspector] public static List<GameObject> enemiesSpawning = null;
+    /// <summary>
+    /// Creates a list of enemies.
+    /// </summary>
    void Start()
     {
         sharedInstance = this;
         enemiesSpawning = new List<GameObject>();
     }
-
+    /// <summary>
+    /// This is a spawn timer to check how many enemies are spawning in the world. It also has a capacity of how many will spawn at a time.
+    /// The enemies will spawn at a certain location, set to active and be added to the list of enemies.
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (timer >= spawnTimer)
         {
             if (RoundSystem.sharedInstance.maxSpawnInArea > enemiesSpawning.Count && RoundSystem.sharedInstance.enemiesRemaining > enemiesSpawning.Count)

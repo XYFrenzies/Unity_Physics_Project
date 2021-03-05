@@ -12,7 +12,9 @@ public class BulletMovement : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody>();
     }
-
+    /// <summary>
+    /// Shoots in the direction of the player's camera, the bullet then follows the direction without any determination of the camera.
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -29,12 +31,6 @@ public class BulletMovement : MonoBehaviour
     {
         m_rb.velocity = Vector3.zero;
         isShooting = false;
-        m_rb.gameObject.SetActive(false);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        m_rb.velocity = Vector3.zero;
         m_rb.gameObject.SetActive(false);
     }
 }

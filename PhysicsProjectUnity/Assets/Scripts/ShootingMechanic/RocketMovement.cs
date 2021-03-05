@@ -16,7 +16,9 @@ public class RocketMovement : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         sharedInstance = this;
     }
-
+    /// <summary>
+    /// Checks if the player is shooting, if it is, the ball will travel in that direction, however it will start from traveling in the direction of the camera.forward.
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -29,18 +31,17 @@ public class RocketMovement : MonoBehaviour
             m_rb.AddForce(transform.forward * m_movespeed);
 
     }
+    //If the object is within a trigger, it is set inactive.
     private void OnTriggerEnter(Collider other)
     {
         m_rb.velocity = Vector3.zero;
         isShooting = false;
         m_rb.gameObject.SetActive(false);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        m_rb.velocity = Vector3.zero;
-        m_rb.gameObject.SetActive(false);
-    }
+    /// <summary>
+    /// Goes through all the colliders within the array and adds the ragdoll to it. if the ragdoll is in the rigidbodies of ragdolls, the explosive effect occurs.
+    /// </summary>
+    /// <param name="col"></param>
     // Start is called before the first frame update
     public void MultiForce(Collider[] col)
     {

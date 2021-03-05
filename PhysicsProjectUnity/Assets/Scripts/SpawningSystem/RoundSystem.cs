@@ -19,11 +19,15 @@ public class RoundSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_roundNumber.text = roundNumber.ToString();
+        m_roundNumber.text = roundNumber.ToString();//Converting from int to string.
         sharedInstance = this;
         pointTotal = 0;
     }
-
+    /// <summary>
+    /// Every round, it will update so that the number of enemies are calculated,
+    /// the amount of points are updated and the number of enemies remianing are updated.
+    /// If there isnt any enemies left, set it to a new round.
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -33,7 +37,7 @@ public class RoundSystem : MonoBehaviour
             enemiesRemaining = enemyPerRound;
             isNewRound = false;
         }
-        m_roundNumber.text = roundNumber.ToString();
+        m_roundNumber.text = "Round " + roundNumber.ToString();
         m_points.text = "Points: " + pointTotal.ToString();
         m_enemiesRemaining.text = "Enemies: " + enemiesRemaining.ToString();
         if (enemiesRemaining <= 0)

@@ -5,6 +5,13 @@ using UnityEngine;
 public class RagdollTrigger : MonoBehaviour
 {
     [SerializeField] private float m_ragDollSpeed = 10;
+    /// <summary>
+    /// Once the enemy has entered a trigger, it will be recognised through its tag and the ragdoll effect will occur.
+    /// It loops through all rigidbodies within the enemy to make the add force in the direction of the projectile.
+    /// Once this has occured, the projectile is set back to false. However, if it isnt hitting an enemy but the ground,
+    /// the rocket or the wrecking ball tags will begin a explosive force from the collision point outwards.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();

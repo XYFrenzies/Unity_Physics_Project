@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     private float m_timer = 2;
     private float deltaTimer = 0;
     private bool hasHitAnim = false;
+    /// <summary>
+    /// Adds the components to the variables and enables the controller.
+    /// </summary>
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,12 @@ public class PlayerController : MonoBehaviour
         m_controls = new InputManager();
         m_controls.Player.Enable();
     }
+    /// <summary>
+    /// In order for the direction to be calculated, wihtin the new input system it is checked if the player is moving with the two vector2 axis.
+    /// If they are moving, it is calculated the correct direction that they are moving, if they are running (through shift), they will move at a faster speed than walking.
+    /// If the player is grounded its y velocity will be equal to zero, otherwise it will continuously fall until it hits the ground.
+    /// Within the animation, in order for a timer to occur, the player needs to stand onto of the platform so that it will move. 
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -43,6 +52,11 @@ public class PlayerController : MonoBehaviour
         if (hasHitAnim)
             deltaTimer += Time.fixedDeltaTime;
     }
+    /// <summary>
+    /// Using a character controller, it checks first if the player is hitting the elavator. If it is we determin if its in the middle of its playthrough or if it is active or not.
+    /// When the player is colliding with a rigidbody, a force will be put against the object.
+    /// </summary>
+    /// <param name="hit"></param>
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.GetComponent<Animation>() &&
@@ -58,8 +72,6 @@ public class PlayerController : MonoBehaviour
                 deltaTimer = 0;
             }
         }
-
-
         Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
             return;

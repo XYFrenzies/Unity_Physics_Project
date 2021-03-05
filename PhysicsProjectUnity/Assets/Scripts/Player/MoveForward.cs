@@ -7,6 +7,11 @@ public class MoveForward : MonoBehaviour
     [SerializeField] private GameObject shotPos = null;
     [SerializeField] private float m_timer = 0;
     private float deltaTimer = 0;
+    /// <summary>
+    /// Sets the projectile active depending on what one is being used at the time and which input is being entered.
+    /// There is a timer for the shooting so that it is semi automatic.
+    /// Position and the rotation of the projectiles are set at a certain position on the player.
+    /// </summary>
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -22,7 +27,7 @@ public class MoveForward : MonoBehaviour
             }
             deltaTimer = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && deltaTimer >= m_timer)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Rocket");
             if (obj != null)
