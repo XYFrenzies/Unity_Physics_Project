@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: db9f00bba703a024384740011b3e0a85, type: 2}
 --- !u!4 &15138247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8481385540397826419, guid: 45954ed369ba9f446897db98ea741f60, type: 3}
@@ -2315,7 +2315,7 @@ GameObject:
   - component: {fileID: 846630010}
   m_Layer: 0
   m_Name: 3rd Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2462,7 +2462,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7999939, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 1.7999929, z: 0.0000009536743}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2684,7 +2684,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7669966, z: 0.00000166893}
+  m_ConnectedAnchor: {x: 0, y: 1.7669952, z: 0.0000035762787}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3773,7 +3773,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &1259008018
 MeshCollider:
@@ -5225,7 +5225,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7299938, z: -0.00000071525574}
+  m_ConnectedAnchor: {x: 0, y: 1.7299924, z: 0.0000011920929}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

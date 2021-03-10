@@ -26,7 +26,7 @@ public class Ragdoll : MonoBehaviour
         {
             animator.enabled = !value;
 
-            foreach (Rigidbody r in rigidbodies) 
+            foreach (Rigidbody r in rigidbodies)
             {
                 r.isKinematic = !value;
             }
@@ -53,14 +53,7 @@ public class Ragdoll : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (!isCollided && !isHit)
-        {
-            if (!isTouchingObj && !isInsideObj)
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(m_player.transform.position.x, 0, m_player.transform.position.z), m_moveSpeed * Time.fixedDeltaTime);
-            else if(isInsideObj && !isTouchingObj)
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(objOther.transform.position.x, 0, objOther.transform.position.z), -1 * m_moveSpeed * Time.fixedDeltaTime);
-        }
-        else
+        if (!isCollided && isHit)
         {
             m_timer += Time.fixedDeltaTime;
             if (m_timer >= 3.0f && !isRocket)
@@ -78,7 +71,7 @@ public class Ragdoll : MonoBehaviour
     /// <summary>
     /// This is reseting the enemy to be kinematic.
     /// </summary>
-    void ReturnToNormal() 
+    void ReturnToNormal()
     {
         foreach (Rigidbody r in rigidbodies)
         {
@@ -87,7 +80,7 @@ public class Ragdoll : MonoBehaviour
         }
 
     }
-    bool isARigidBodyComponent(GameObject obj) 
+    bool isARigidBodyComponent(GameObject obj)
     {
         foreach (Rigidbody r in rigidbodies)
         {
@@ -104,7 +97,7 @@ public class Ragdoll : MonoBehaviour
     /// Once found the ragdoll affect will turn off, increase movement speed, removes from the list and adds to the points and the amount of enemies remaining.
     /// We later set the timer back to zero.
     /// </summary>
-    void RemoveRagdollFromScene() 
+    void RemoveRagdollFromScene()
     {
         int value = Spawner.enemiesSpawning.Count;
         for (int i = 1; i < value; i++)
@@ -142,7 +135,7 @@ public class Ragdoll : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && !isARigidBodyComponent(other.gameObject))
         {
-            objOther = other.gameObject;
+            gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(other.transform.position.x, 0, other.transform.position.z) * -1 * m_moveSpeed);
             isInsideObj = true;
         }
     }
