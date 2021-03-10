@@ -18,6 +18,7 @@ public class Ragdoll : MonoBehaviour
     [HideInInspector] public static Ragdoll sharedInheritance;
     private float m_timer = 0;
     [HideInInspector] public bool isInsideObj = false;
+    [HideInInspector] public GameObject objOther = null;
     public bool RagdollOn
     {
         get { return !animator.enabled; }
@@ -56,6 +57,8 @@ public class Ragdoll : MonoBehaviour
         {
             if (!isTouchingObj && !isInsideObj)
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(m_player.transform.position.x, 0, m_player.transform.position.z), m_moveSpeed * Time.fixedDeltaTime);
+            else if(isInsideObj && !isTouchingObj)
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(objOther.transform.position.x, 0, objOther.transform.position.z), -1 * m_moveSpeed * Time.fixedDeltaTime);
         }
         else
         {
@@ -139,7 +142,7 @@ public class Ragdoll : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && !isARigidBodyComponent(other.gameObject))
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-other.transform.position.x, 0, -other.transform.position.z), m_moveSpeed * Time.fixedDeltaTime * 1000);
+            objOther = other.gameObject;
             isInsideObj = true;
         }
     }
