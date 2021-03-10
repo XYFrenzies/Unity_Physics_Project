@@ -17,6 +17,7 @@ public class Ragdoll : MonoBehaviour
     [HideInInspector] public bool isTouchingObj = false;
     [HideInInspector] public static Ragdoll sharedInheritance;
     private float m_timer = 0;
+    [HideInInspector] public bool isInsideObj = false;
     public bool RagdollOn
     {
         get { return !animator.enabled; }
@@ -35,6 +36,7 @@ public class Ragdoll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         animator = GetComponent<Animator>();
         foreach (Rigidbody r in rigidbodies)
         {
@@ -52,10 +54,13 @@ public class Ragdoll : MonoBehaviour
     {
         if (!isCollided && !isHit)
         {
-            if (!isTouchingObj)
+            if (!isTouchingObj && !isInsideObj)
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(m_player.transform.position.x, 0, m_player.transform.position.z), m_moveSpeed * Time.fixedDeltaTime);
+            else if (isInsideObj && !isTouchingObj)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(-m_player.transform.position.x, 0, -m_player.transform.position.z), m_moveSpeed * Time.fixedDeltaTime);
+            }
         }
-
         else
         {
             m_timer += Time.fixedDeltaTime;
@@ -81,6 +86,7 @@ public class Ragdoll : MonoBehaviour
             r.isKinematic = true;
             r.gameObject.tag = "Enemy";
         }
+
     }
     /// <summary>
     /// In the spawner script, we have a list of all enemies in the scene. We check if there is any in the scene. 
@@ -122,4 +128,27 @@ public class Ragdoll : MonoBehaviour
         }
         m_timer = 0;
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Enemy"))
+    //    {
+    //        isInsideObj = true;
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Enemy"))
+    //    {
+    //       isInsideObj = false;
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
+    
 }

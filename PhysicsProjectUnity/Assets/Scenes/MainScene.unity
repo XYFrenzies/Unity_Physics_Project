@@ -2462,7 +2462,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7999934, z: 0.00000047683716}
+  m_ConnectedAnchor: {x: 0, y: 1.7999939, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2684,7 +2684,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7669959, z: 0.0000026226044}
+  m_ConnectedAnchor: {x: 0, y: 1.7669966, z: 0.00000166893}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3139,7 +3139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983584021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.5, y: -7, z: 168.36}
+  m_LocalPosition: {x: 21.5, y: -7.3, z: 168.36}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 806866527}
@@ -3961,7 +3961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_txt: {fileID: 588112505}
-  m_valueOfTrap: 500
+  m_valueOfTrap: 0
   rigidbodies:
   - {fileID: 102995452}
   - {fileID: 331851266}
@@ -3972,7 +3972,7 @@ MonoBehaviour:
   - {fileID: 860817131}
   - {fileID: 1538809898}
   - {fileID: 1456901485}
-  m_timerForTrap: 10
+  m_timerForTrap: 100
   explosiveForce: 400
   explosiveRadius: 20
 --- !u!135 &1335978908
@@ -5225,7 +5225,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.49999237, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.7299931, z: 0.00000023841858}
+  m_ConnectedAnchor: {x: 0, y: 1.7299938, z: -0.00000071525574}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
