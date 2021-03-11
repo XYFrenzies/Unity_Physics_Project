@@ -46,6 +46,10 @@ public class WreckingBall : MonoBehaviour
             wBStarted = true;
         }
 
+
+    }
+    void FixedUpdate()
+    {
         if (wBStarted)
         {
             timer += Time.fixedDeltaTime;

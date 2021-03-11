@@ -3961,7 +3961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_txt: {fileID: 588112505}
-  m_valueOfTrap: 0
+  m_valueOfTrap: 1000
   rigidbodies:
   - {fileID: 102995452}
   - {fileID: 331851266}
@@ -3972,9 +3972,9 @@ MonoBehaviour:
   - {fileID: 860817131}
   - {fileID: 1538809898}
   - {fileID: 1456901485}
-  m_timerForTrap: 100
+  m_timerForTrap: 22
   explosiveForce: 400
-  explosiveRadius: 20
+  explosiveRadius: 25
 --- !u!135 &1335978908
 SphereCollider:
   m_ObjectHideFlags: 0
