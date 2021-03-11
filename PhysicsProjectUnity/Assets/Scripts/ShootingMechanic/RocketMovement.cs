@@ -56,8 +56,6 @@ public class RocketMovement : MonoBehaviour
                     foreach (Rigidbody rb in rag.rigidbodies)
                     {
                         col[i].GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, m_rb.position, explosiveRadius);
-                        rag.isCollided = false;
-                        rag.isRocket = true;
                         rag.isHit = true;
                     }
                 }

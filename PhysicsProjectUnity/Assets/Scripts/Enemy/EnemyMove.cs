@@ -19,7 +19,16 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!rag.isCollided && !rag.isHit && !rag.isTouchingObj)
+        if (!rag.isCollided && !rag.isHit && !rag.isTouchingObj)
+        {
+            nav.enabled = true;
             nav.SetDestination(player.transform.position);
+        }
+
+        else if (rag.isCollided || rag.isHit)
+        {
+            //nav.acceleration = 0;
+            nav.enabled = false;
+        }
     }
 }

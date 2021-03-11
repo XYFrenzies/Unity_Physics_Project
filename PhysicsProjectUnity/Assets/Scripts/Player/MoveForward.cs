@@ -27,6 +27,9 @@ public class MoveForward : MonoBehaviour
             }
             deltaTimer = 0;
         }
+    }
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Rocket");

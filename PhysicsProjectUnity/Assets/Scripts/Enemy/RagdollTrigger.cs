@@ -25,7 +25,6 @@ public class RagdollTrigger : MonoBehaviour
                 {
                     if (this.CompareTag("Bullet"))
                         rb.AddForce(objRB.velocity * m_ragDollSpeed);
-                    r.isCollided = false;
                     r.isHit = true;
 
                 }

@@ -105,8 +105,6 @@ public class WreckingBall : MonoBehaviour
                     foreach (Rigidbody rb in rag.rigidbodies)
                     {
                         col[i].GetComponent<Rigidbody>().AddExplosionForce(explosiveForce, rigidbodies[8].position, explosiveRadius);
-                        rag.isCollided = false;
-                        rag.isRocket = true;
                         rag.isHit = true;
                     }
                 }
