@@ -7,6 +7,11 @@ public class MoveForward : MonoBehaviour
     [SerializeField] private GameObject shotPos = null;
     [SerializeField] private float m_timer = 0;
     private float deltaTimer = 0;
+    private PlayerController m_player;
+    private void Start()
+    {
+        m_player = PlayerController.globalPlayer;
+    }
     /// <summary>
     /// Sets the projectile active depending on what one is being used at the time and which input is being entered.
     /// There is a timer for the shooting so that it is semi automatic.
@@ -16,7 +21,7 @@ public class MoveForward : MonoBehaviour
     void FixedUpdate()
     {
         deltaTimer += Time.fixedDeltaTime;
-        if (Input.GetMouseButton(0) && deltaTimer >= m_timer && PlayerController.globalPlayer.isAiming) 
+        if (Input.GetMouseButton(0) && deltaTimer >= m_timer && m_player.isAiming && m_player.switchWeapons == 1) 
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Bullet");
             if (obj != null)
@@ -30,7 +35,7 @@ public class MoveForward : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && PlayerController.globalPlayer.isAiming)
+        if (Input.GetMouseButton(0) && PlayerController.globalPlayer.isAiming && m_player.switchWeapons == 2)
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Rocket");
             if (obj != null)

@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float m_viewPointTimer = 0;
     private float m_constTime = 0.5f;
     private float m_jumpTimer = 2;
+    private float m_swtichTimer = 2;
+    [HideInInspector] public int switchWeapons = 1;
     /// <summary>
     /// Adds the components to the variables and enables the controller.
     /// </summary>
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         var rClickZoom = m_controls.Player.PlayerAim.ReadValue<float>();
+        var changeWeapons = m_controls.Player.ChangeWeapons.ReadValue<float>();
         if (rClickZoom != 0)
         {
             if (!isAiming && m_viewPointTimer >= m_constTime)
@@ -68,7 +71,14 @@ public class PlayerController : MonoBehaviour
         Jump();
         if (hasHitAnim)
             deltaTimer += Time.fixedDeltaTime;
-        m_viewPointTimer += Time.deltaTime;
+        m_viewPointTimer += Time.fixedDeltaTime;
+        if (changeWeapons != 0 && m_swtichTimer >= m_constTime)
+        {
+            switchWeapons += 1;
+            if (switchWeapons == 2)
+                switchWeapons = 1;
+        }
+        m_swtichTimer += Time.fixedDeltaTime;
     }
 
     /// <summary>
@@ -130,17 +140,16 @@ public class PlayerController : MonoBehaviour
     void Movement() 
     {
         var dir = m_controls.Player.Movement.ReadValue<Vector2>();
-        
+        var accel = m_controls.Player.Acceleration.ReadValue<float>();
         if ((dir.x != 0 || dir.y != 0))
         {
             Vector3 input = transform.right * dir.x + transform.forward * dir.y;  //This is for the movement of the player in the certain direction.
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (accel <= 0)
             {
                 controller.Move(input * Time.fixedDeltaTime * m_MovementSpeed);
                 AnimationSetting("SpeedMod", 1);
             }
-
-            else if (Input.GetKey(KeyCode.LeftShift))
+            else if (accel != 0)
             {
                 controller.Move(input * Time.fixedDeltaTime * (m_MovementSpeed + m_maxRunningSpeed));
                 AnimationSetting("SpeedMod", 2);

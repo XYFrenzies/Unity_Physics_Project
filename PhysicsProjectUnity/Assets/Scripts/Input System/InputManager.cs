@@ -41,6 +41,30 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ChangeWeapons"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d8e7de6-45b1-4814-a745-9aabefae12b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveObjects"",
+                    ""type"": ""Button"",
+                    ""id"": ""280136a3-acf7-499a-8ea9-4240354262dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Acceleration"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee7f078-42a6-455c-a133-80fa4989f048"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -102,7 +126,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""00fe6e4f-984d-468a-981a-a068bd08f93c"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -120,6 +144,39 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Player Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""072934f2-e2ec-451f-8a24-7ef90edfb874"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18e34f04-2eaa-49f8-9d72-718289a3faf6"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveObjects"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acd31fec-eb63-4a4c-9a83-b31e60e66eb9"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Acceleration"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +188,9 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_PlayerAim = m_Player.FindAction("Player Aim", throwIfNotFound: true);
+        m_Player_ChangeWeapons = m_Player.FindAction("ChangeWeapons", throwIfNotFound: true);
+        m_Player_MoveObjects = m_Player.FindAction("MoveObjects", throwIfNotFound: true);
+        m_Player_Acceleration = m_Player.FindAction("Acceleration", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +243,9 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_PlayerAim;
+    private readonly InputAction m_Player_ChangeWeapons;
+    private readonly InputAction m_Player_MoveObjects;
+    private readonly InputAction m_Player_Acceleration;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
@@ -190,6 +253,9 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @PlayerAim => m_Wrapper.m_Player_PlayerAim;
+        public InputAction @ChangeWeapons => m_Wrapper.m_Player_ChangeWeapons;
+        public InputAction @MoveObjects => m_Wrapper.m_Player_MoveObjects;
+        public InputAction @Acceleration => m_Wrapper.m_Player_Acceleration;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +274,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @PlayerAim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAim;
                 @PlayerAim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAim;
                 @PlayerAim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAim;
+                @ChangeWeapons.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapons;
+                @ChangeWeapons.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapons;
+                @ChangeWeapons.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeapons;
+                @MoveObjects.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveObjects;
+                @MoveObjects.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveObjects;
+                @MoveObjects.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveObjects;
+                @Acceleration.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
+                @Acceleration.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
+                @Acceleration.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +296,15 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @PlayerAim.started += instance.OnPlayerAim;
                 @PlayerAim.performed += instance.OnPlayerAim;
                 @PlayerAim.canceled += instance.OnPlayerAim;
+                @ChangeWeapons.started += instance.OnChangeWeapons;
+                @ChangeWeapons.performed += instance.OnChangeWeapons;
+                @ChangeWeapons.canceled += instance.OnChangeWeapons;
+                @MoveObjects.started += instance.OnMoveObjects;
+                @MoveObjects.performed += instance.OnMoveObjects;
+                @MoveObjects.canceled += instance.OnMoveObjects;
+                @Acceleration.started += instance.OnAcceleration;
+                @Acceleration.performed += instance.OnAcceleration;
+                @Acceleration.canceled += instance.OnAcceleration;
             }
         }
     }
@@ -230,5 +314,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPlayerAim(InputAction.CallbackContext context);
+        void OnChangeWeapons(InputAction.CallbackContext context);
+        void OnMoveObjects(InputAction.CallbackContext context);
+        void OnAcceleration(InputAction.CallbackContext context);
     }
 }

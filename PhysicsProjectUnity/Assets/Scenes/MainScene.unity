@@ -1566,6 +1566,7 @@ GameObject:
   - component: {fileID: 666985047}
   - component: {fileID: 666985050}
   - component: {fileID: 666985051}
+  - component: {fileID: 666985052}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1656,6 +1657,23 @@ MonoBehaviour:
   enemyPerRound: 0
   pointTotal: 0
   enemiesRemaining: 0
+--- !u!114 &666985052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666985046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c02fb42748c8d41827f4b5f0738364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listobj: []
+  objectMaterials: []
+  alphaMat: {fileID: 2100000, guid: d6e296620e042c34d9cbbaed645b8493, type: 2}
+  m_shader: {fileID: 4800000, guid: 217f89af44d77c64a99b202ddf2e384d, type: 3}
+  rayCastRange: 5
 --- !u!1001 &716723394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1876,7 +1894,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762984452}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3248,12 +3266,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Hips'\n\tTransform 'Spine1'\n\tTransform 'Neck'\n\tTransform
-    'RightHandMiddle1'\n\tTransform 'LeftUpLeg'\n\tTransform 'RightLeg'\n\tTransform
-    'LeftFoot'\n\tTransform 'RightArm'\n\tTransform 'LeftHand'\n\tTransform 'Spine2'\n\tand
-    more ...\n\tFrom animation clip 'Rifle Aiming Idle (1)'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -3314,6 +3327,8 @@ MonoBehaviour:
   m_animtionDampTime: 10
   m_animtionScaling: 10
   m_jumpSpeed: 8
+  isAiming: 0
+  switchWeapons: 1
 --- !u!114 &1091507326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5665,6 +5680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt_doorNorth
       objectReference: {fileID: 0}
+    - target: {fileID: 5390565479915679260, guid: 974be1ea1cf280a4cb47e9d3a6ba9301, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 974be1ea1cf280a4cb47e9d3a6ba9301, type: 3}
 --- !u!1001 &3571129162962133747
@@ -5677,6 +5696,10 @@ PrefabInstance:
     - target: {fileID: 2336554837797973754, guid: 23beb74ff6c84ba499b6735292e71d4e, type: 3}
       propertyPath: m_Name
       value: crypt_doorEast
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336554837797973754, guid: 23beb74ff6c84ba499b6735292e71d4e, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
       objectReference: {fileID: 0}
     - target: {fileID: 3571129164718630010, guid: 23beb74ff6c84ba499b6735292e71d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5735,6 +5758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt_doorWest
       objectReference: {fileID: 0}
+    - target: {fileID: 2052383670787894790, guid: dd98372ca4cfecf4ab7188f342718968, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
+      objectReference: {fileID: 0}
     - target: {fileID: 3864351532673730792, guid: dd98372ca4cfecf4ab7188f342718968, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47.05
@@ -5791,6 +5818,10 @@ PrefabInstance:
     - target: {fileID: 1778515116224867079, guid: 338b11d38859a1749bf0b09d40bd43d5, type: 3}
       propertyPath: m_Name
       value: crypt_doorSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778515116224867079, guid: 338b11d38859a1749bf0b09d40bd43d5, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
       objectReference: {fileID: 0}
     - target: {fileID: 7535171249883708374, guid: 338b11d38859a1749bf0b09d40bd43d5, type: 3}
       propertyPath: m_LocalPosition.x
