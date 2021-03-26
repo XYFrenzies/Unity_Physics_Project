@@ -29,8 +29,8 @@ public class BulletMovement : MonoBehaviour
 }
     private void OnTriggerEnter(Collider other)
     {
-        m_rb.velocity = Vector3.zero;
         isShooting = false;
+        m_rb.velocity = Vector3.zero;
         m_rb.gameObject.SetActive(false);
     }
 }

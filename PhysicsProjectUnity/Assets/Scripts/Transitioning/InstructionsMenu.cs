@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class InstructionsMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject m_startMenu;
-    [SerializeField] private GameObject m_instrucMenu;
+    [SerializeField] private GameObject m_startMenu = null;
+    [SerializeField] private GameObject m_instrucMenu = null;
 
     public void Instructions() 
     {

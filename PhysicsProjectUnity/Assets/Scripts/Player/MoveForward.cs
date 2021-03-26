@@ -16,7 +16,7 @@ public class MoveForward : MonoBehaviour
     void FixedUpdate()
     {
         deltaTimer += Time.fixedDeltaTime;
-        if (Input.GetMouseButton(0) && deltaTimer >= m_timer) 
+        if (Input.GetMouseButton(0) && deltaTimer >= m_timer && PlayerController.globalPlayer.isAiming) 
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Bullet");
             if (obj != null)
@@ -30,7 +30,7 @@ public class MoveForward : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerController.globalPlayer.isAiming)
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Rocket");
             if (obj != null)
