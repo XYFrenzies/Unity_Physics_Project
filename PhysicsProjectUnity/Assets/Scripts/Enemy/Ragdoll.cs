@@ -88,7 +88,10 @@ public class Ragdoll : MonoBehaviour
         m_moveSpeed += 1;
         isCollided = false;
         isHit = false;
-        RoundSystem.sharedInstance.pointTotal += 10;
+        if (RoundSystem.sharedInstance.doublePoints)
+            RoundSystem.sharedInstance.pointTotal += 10 * 2;
+        else
+            RoundSystem.sharedInstance.pointTotal += 10;
         RoundSystem.sharedInstance.enemiesRemaining -= 1;
         gameObject.SetActive(false);
         Spawner.enemiesInScene -= 1;

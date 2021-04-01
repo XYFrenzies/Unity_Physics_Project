@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2262577589999949432, guid: d65d9abff3e786040acbb18ac5f67e65, type: 3}
+      propertyPath: pickUpandPushTimer
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d65d9abff3e786040acbb18ac5f67e65, type: 3}
 --- !u!1 &6514324750166849491 stripped

@@ -7,7 +7,7 @@ public class CameraClipping : MonoBehaviour
     [HideInInspector] public List<MeshRenderer> listobj;
     [HideInInspector] public List<Material> objectMaterials;
     [SerializeField] public Material alphaMat;
-    [SerializeField] private Shader m_shader;
+    [SerializeField] private Shader m_shader = null;
     [SerializeField] [Range(3.0f, 7.0f)] public float rayCastRange = 5.5f;
     private void FixedUpdate()
     {

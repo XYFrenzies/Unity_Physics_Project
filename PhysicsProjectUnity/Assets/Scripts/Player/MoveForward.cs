@@ -6,9 +6,10 @@ public class MoveForward : MonoBehaviour
 {
     [SerializeField] private GameObject shotPos = null;
     [SerializeField] private float m_timer = 0;
+    [SerializeField] private float m_rocketTimer = 0;
     private float deltaTimer = 0;
     private PlayerController m_player;
-    private void Start()
+    void Start()
     {
         m_player = PlayerController.globalPlayer;
     }
@@ -21,6 +22,7 @@ public class MoveForward : MonoBehaviour
     void FixedUpdate()
     {
         deltaTimer += Time.fixedDeltaTime;
+        m_rocketTimer += Time.fixedDeltaTime;
         if (Input.GetMouseButton(0) && deltaTimer >= m_timer && m_player.isAiming && m_player.switchWeapons == 1) 
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Bullet");
@@ -32,10 +34,7 @@ public class MoveForward : MonoBehaviour
             }
             deltaTimer = 0;
         }
-    }
-    void Update()
-    {
-        if (Input.GetMouseButton(0) && PlayerController.globalPlayer.isAiming && m_player.switchWeapons == 2)
+        else if (Input.GetMouseButton(0) && m_player.isAiming && m_player.switchWeapons == 2 && m_rocketTimer >= m_timer)
         {
             GameObject obj = ObjectPooling.SharedInstance.GetPooledObject("Rocket");
             if (obj != null)
@@ -44,6 +43,7 @@ public class MoveForward : MonoBehaviour
                 obj.transform.rotation = shotPos.transform.rotation;
                 obj.gameObject.SetActive(true);
             }
+            m_rocketTimer = 0;
         }
     }
 }

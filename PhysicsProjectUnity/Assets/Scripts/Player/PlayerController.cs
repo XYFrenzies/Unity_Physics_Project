@@ -6,38 +6,46 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController globalPlayer;
-    [SerializeField] [Range(0.001f, 5f)] private float m_MovementSpeed = 2.0f;
+    [SerializeField] private GameObject m_riflePNG = null;
+    [SerializeField] private GameObject m_launcherPNG = null;
+    [SerializeField] [Range(0.001f, 5f)] public float m_MovementSpeed = 2.0f;
+    [SerializeField] [Range(5.0f, 20.0f)] private float m_animtionDampTime = 10.0f;//The smoothness between the transition.
+    [SerializeField] [Range(5.0f, 30.0f)] private float m_animtionScaling = 10.0f;//The time between the transition.
     [SerializeField] private float m_maxRunningSpeed = 10.0f;
     [SerializeField] private float pushPower = 2.0f;
-    private Vector3 playerVelocity = Vector3.zero;
     [SerializeField] private float gravityValue = -4.81f;
-    [SerializeField][Range(5.0f, 20.0f)] private float m_animtionDampTime = 10.0f;//The smoothness between the transition.
-    [SerializeField] [Range(5.0f, 30.0f)] private float m_animtionScaling = 10.0f;//The time between the transition.
     [SerializeField] private float m_jumpSpeed = 8.0f;
+    [HideInInspector] public int switchWeapons = 1;
+    [HideInInspector] public bool isAiming = false;
+    public static PlayerController globalPlayer = null;
+    private Vector3 playerVelocity = Vector3.zero;
     private CharacterController controller = null;
     private Animator m_animator = null;
     private InputManager m_controls;
-    private float m_timer = 2;
-    private float deltaTimer = 0;
     private bool hasHitAnim = false;
-    [HideInInspector] public bool isAiming = false;
     private float m_viewPointTimer = 0;
     private float m_constTime = 0.5f;
     private float m_jumpTimer = 2;
     private float m_swtichTimer = 2;
-    [HideInInspector] public int switchWeapons = 1;
+    private float m_timer = 2;
+    private float deltaTimer = 0;
+
     /// <summary>
     /// Adds the components to the variables and enables the controller.
     /// </summary>
     // Start is called before the first frame update
+    void Awake()
+    {
+        globalPlayer = this;
+    }
     void Start()
     {
+        m_riflePNG.SetActive(true);
+        m_launcherPNG.SetActive(false);
         controller = GetComponentInChildren<CharacterController>();
         m_controls = new InputManager();
         m_controls.Player.Enable();
         m_animator = GetComponent<Animator>();
-        globalPlayer = this;
     }
     
     /// <summary>
@@ -72,11 +80,27 @@ public class PlayerController : MonoBehaviour
         if (hasHitAnim)
             deltaTimer += Time.fixedDeltaTime;
         m_viewPointTimer += Time.fixedDeltaTime;
+        //In order to change weapons, tab is pressed with a cooldown for how many times u can press it.
         if (changeWeapons != 0 && m_swtichTimer >= m_constTime)
         {
             switchWeapons += 1;
-            if (switchWeapons == 2)
-                switchWeapons = 1;
+            switch (switchWeapons)
+            {
+                case 1: 
+                      m_riflePNG.SetActive(true);
+                    m_launcherPNG.SetActive(false);
+                    break;
+                case 2:
+                    m_launcherPNG.SetActive(true);
+                    m_riflePNG.SetActive(false);
+                    break;
+                case 3:
+                    m_riflePNG.SetActive(true);
+                    m_launcherPNG.SetActive(false);
+                    switchWeapons = 1;
+                    break;
+            }
+            m_swtichTimer = 0;
         }
         m_swtichTimer += Time.fixedDeltaTime;
     }

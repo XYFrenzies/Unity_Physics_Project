@@ -7,6 +7,7 @@ public class RoundSystem : MonoBehaviour
     [SerializeField] private Text m_roundNumber = null;
     [SerializeField] private Text m_enemiesRemaining = null;
     [SerializeField] private Text m_points = null;
+    [SerializeField] private float m_doublePointsTimer = 10;
     [Tooltip("Max amount of enemies in the area.")]
     [SerializeField] public int maxSpawnInArea = 30;
     private bool isNewRound = true;
@@ -15,6 +16,8 @@ public class RoundSystem : MonoBehaviour
     [HideInInspector] public int enemyPerRound;
     [HideInInspector] public int pointTotal;
     [HideInInspector] public int enemiesRemaining = 0;
+    [HideInInspector] public bool doublePoints = false;
+    private float m_timerDP;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,9 @@ public class RoundSystem : MonoBehaviour
             isNewRound = true;
             roundNumber += 1;
         }
-
+        if (doublePoints)
+            m_timerDP += Time.deltaTime;
+        if (m_timerDP >= m_doublePointsTimer)
+            doublePoints = false;
     }
 }

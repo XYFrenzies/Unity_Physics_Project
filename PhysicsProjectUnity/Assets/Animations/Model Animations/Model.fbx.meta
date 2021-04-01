@@ -6,12 +6,37 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skeletonZombie_Material
+    second: {fileID: 2100000, guid: 2b2bf66680d53ec408c6b251f86bc6d9, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: skeletonZombie_diffuse
+    second: {fileID: 2800000, guid: 189ea9fa3b127f046a31c82ef97d3d71, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: skeletonZombie_glow
+    second: {fileID: 2800000, guid: f975bf1ddeec70e448b320cce777d148, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: skeletonZombie_normal
+    second: {fileID: 2800000, guid: b694a2dab452b1b4a9d5a0a67e4fd5a9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: skeletonZombie_specular
+    second: {fileID: 2800000, guid: 415a1defecee69d4098d9d516cc107f6, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

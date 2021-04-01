@@ -36,7 +36,8 @@ public class WreckingBall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && RoundSystem.sharedInstance.pointTotal >= m_valueOfTrap && isInTrigger == true)
         {
-            foreach(Rigidbody rb in rigidbodies)
+            RoundSystem.sharedInstance.pointTotal -= m_valueOfTrap;
+            foreach (Rigidbody rb in rigidbodies)
             {
                 rb.isKinematic = false;
                 rb.velocity = Vector3.zero;

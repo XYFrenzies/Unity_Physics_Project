@@ -16,6 +16,7 @@ public class ElavatorScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && RoundSystem.sharedInstance.pointTotal >= m_valueOfTrap && isInTrigger == true)
         {
+            RoundSystem.sharedInstance.pointTotal -= m_valueOfTrap;
             m_anim.Play();
             m_txt.text = "";
             elavatorStarted = true;
