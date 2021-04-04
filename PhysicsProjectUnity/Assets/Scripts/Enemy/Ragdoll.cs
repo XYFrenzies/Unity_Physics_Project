@@ -56,10 +56,8 @@ public class Ragdoll : MonoBehaviour
         {
             m_timer += Time.fixedDeltaTime;
             if (m_timer >= 3.0f)
-            {
                 RemoveRagdollFromScene();
 
-            }
         }
 
     }
