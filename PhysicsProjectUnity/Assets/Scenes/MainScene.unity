@@ -649,7 +649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &145467022
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -906,7 +906,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.9914521, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1343,7 +1343,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 5
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1602,7 +1602,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5437,13 +5437,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145467021}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -44.89913, y: 5.6046863, z: 18.973356}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 3.23, y: -0.34, z: -1.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 866632402}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1001 &151023867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8072,6 +8072,7 @@ Transform:
   - {fileID: 883418495}
   - {fileID: 44040886}
   - {fileID: 371055893}
+  - {fileID: 145467024}
   m_Father: {fileID: 1091507322}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9229,8 +9230,10 @@ MonoBehaviour:
   pushPower: 10
   gravityValue: -9
   m_jumpSpeed: 8
+  m_moveSpeedWallPowerTimer: 10.2
   switchWeapons: 1
   isAiming: 0
+  isWallPowerSpeedOn: 0
 --- !u!114 &1091507326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9264,6 +9267,14 @@ MonoBehaviour:
     m_Active: 1
   m_Effectors:
   - m_Transform: {fileID: 1091507322}
+    m_Style:
+      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 145467024}
     m_Style:
       shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
       color: {r: 1, g: 0, b: 0, a: 0.5}
@@ -10195,9 +10206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a510a6fd1356f45aaea6e2dd64fc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wallPowerSpeed: 500
+  m_wallPowerSpeedCost: 0
   m_movementSpeed: 2
-  m_doublePointsPower: 600
+  m_doublePointsPowerCost: 600
   m_largerRadiusCost: 800
   m_largerRadius: 1
   m_nukeCost: 9000

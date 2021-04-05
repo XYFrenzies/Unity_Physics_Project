@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class WallPowers : MonoBehaviour
 {
-    [SerializeField] private int m_wallPowerSpeed = 500;
+    [SerializeField] private int m_wallPowerSpeedCost = 500;
     [SerializeField] private float m_movementSpeed = 2;
-    [SerializeField] private int m_doublePointsPower = 600;
+    [SerializeField] private int m_doublePointsPowerCost = 600;
     [SerializeField] private int m_largerRadiusCost = 800;
     [SerializeField] private int m_largerRadius = 1;
     [SerializeField] private int m_nukeCost = 9000;
@@ -24,20 +24,22 @@ public class WallPowers : MonoBehaviour
     }
     public void IncreasedSpeed() 
     {
-        if (RoundSystem.sharedInstance.pointTotal >= m_wallPowerSpeed)
+        if (RoundSystem.sharedInstance.pointTotal >= m_wallPowerSpeedCost)
         {
             PlayerController.globalPlayer.m_MovementSpeed += m_movementSpeed;
-            RoundSystem.sharedInstance.pointTotal -= m_wallPowerSpeed;
+            PlayerController.globalPlayer.isWallPowerSpeedOn = true;
+            RoundSystem.sharedInstance.pointTotal -= m_wallPowerSpeedCost;
+            
         }
     }
 
     public void DoublePoints() 
     {
         if (!RoundSystem.sharedInstance.doublePoints && 
-            RoundSystem.sharedInstance.pointTotal >= m_doublePointsPower)
+            RoundSystem.sharedInstance.pointTotal >= m_doublePointsPowerCost)
         {
             RoundSystem.sharedInstance.doublePoints = true;
-            RoundSystem.sharedInstance.pointTotal -= m_doublePointsPower;
+            RoundSystem.sharedInstance.pointTotal -= m_doublePointsPowerCost;
         }
     }
 

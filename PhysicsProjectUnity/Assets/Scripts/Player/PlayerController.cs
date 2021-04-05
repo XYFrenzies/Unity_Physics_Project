@@ -15,20 +15,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float pushPower = 2.0f;
     [SerializeField] private float gravityValue = -4.81f;
     [SerializeField] private float m_jumpSpeed = 8.0f;
+    [SerializeField] [Range(1.0f, 50.0f)] private float m_moveSpeedWallPowerTimer = 2.0f;
     [HideInInspector] public int switchWeapons = 1;
     [HideInInspector] public bool isAiming = false;
+    [HideInInspector] public bool isWallPowerSpeedOn = false;
     public static PlayerController globalPlayer = null;
     private Vector3 playerVelocity = Vector3.zero;
     private CharacterController controller = null;
     private Animator m_animator = null;
     private InputManager m_controls;
+    private ParticleSystem m_particleSys = null;
     private bool hasHitAnim = false;
     private float m_viewPointTimer = 0;
     private float m_constTime = 0.5f;
     private float m_jumpTimer = 2;
     private float m_swtichTimer = 2;
     private float m_timer = 2;
+    private float m_speedTimer = 0;
     private float deltaTimer = 0;
+    private float m_saveMoveSpeed = 0;
 
     /// <summary>
     /// Adds the components to the variables and enables the controller.
@@ -40,12 +45,15 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        m_saveMoveSpeed = m_MovementSpeed;
         m_riflePNG.SetActive(true);
         m_launcherPNG.SetActive(false);
         controller = GetComponentInChildren<CharacterController>();
         m_controls = new InputManager();
         m_controls.Player.Enable();
         m_animator = GetComponent<Animator>();
+        m_particleSys = GetComponentInChildren<ParticleSystem>();
+        m_particleSys.gameObject.SetActive(false);
     }
     
     /// <summary>
@@ -101,6 +109,18 @@ public class PlayerController : MonoBehaviour
                     break;
             }
             m_swtichTimer = 0;
+        }
+        if (isWallPowerSpeedOn && m_speedTimer >= m_moveSpeedWallPowerTimer)
+        {
+            m_speedTimer = 0;
+            isWallPowerSpeedOn = false;
+            m_particleSys.gameObject.SetActive(false);
+            m_MovementSpeed = m_saveMoveSpeed;
+        }
+        else if (isWallPowerSpeedOn)
+        {
+            m_particleSys.gameObject.SetActive(true);
+            m_speedTimer += Time.fixedDeltaTime;
         }
         m_swtichTimer += Time.fixedDeltaTime;
     }
