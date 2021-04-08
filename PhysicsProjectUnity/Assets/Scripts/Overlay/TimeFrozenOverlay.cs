@@ -10,6 +10,7 @@ public class TimeFrozenOverlay : MonoBehaviour
     private float m_freezeTimer = 0;
     public static TimeFrozenOverlay sharedInstance = null;
     [HideInInspector] public bool m_hasCompletedFreeze = true;
+    [HideInInspector] public bool freezeMatReturn = false;
 
     void Start()
     {
@@ -28,15 +29,8 @@ public class TimeFrozenOverlay : MonoBehaviour
             {
                 m_mat.SetFloat("_Amount", 0);
                 m_hasCompletedFreeze = true;
-
-                List<GameObject> obj = ObjectPooling.SharedInstance.AllObjectsOfType("Enemy");
-
-                for (int i = 0; i <= obj.Count - 1; i++)
-                {
-                    Rigidbody rb = obj[i].GetComponent<Rigidbody>();
-                    rb.velocity *= 2;
-                }
                 m_freezeTimer = 0;
+                freezeMatReturn = true;
             }
         }
     }

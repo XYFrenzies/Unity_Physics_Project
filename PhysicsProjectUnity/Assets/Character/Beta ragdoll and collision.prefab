@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_mat: {fileID: 2100000, guid: aeb6130d1a3270545b9064362febabfd, type: 2}
+  m_oriMat: {fileID: -5993909935191025681, guid: 2dc526a87c49416478b13f971cef333c, type: 3}
 --- !u!114 &-7622574774207776825
 MonoBehaviour:
   m_ObjectHideFlags: 0
