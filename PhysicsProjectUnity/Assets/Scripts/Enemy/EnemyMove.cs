@@ -19,7 +19,11 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!rag.isCollided && !rag.isHit && !rag.isTouchingObj)
+        if (!TimeFrozenOverlay.sharedInstance.m_hasCompletedFreeze)
+        {
+            nav.enabled = false;
+        }
+        else if (!rag.isCollided && !rag.isHit && !rag.isTouchingObj)
         {
             nav.enabled = true;
             nav.SetDestination(player.transform.position);
@@ -30,5 +34,6 @@ public class EnemyMove : MonoBehaviour
             //nav.acceleration = 0;
             nav.enabled = false;
         }
+        
     }
 }

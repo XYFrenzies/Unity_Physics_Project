@@ -69,4 +69,18 @@ public class ObjectPooling : MonoBehaviour
         }
         return objectsInHand;
     }
+
+    public List<GameObject> AllObjectsOfType(string tag)
+    {
+        List<GameObject> objArray = new List<GameObject>();
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (pooledObjects[i].tag == tag)
+            {
+                objArray.Add(pooledObjects[i].gameObject);
+            }
+            
+        }
+        return objArray;
+    }
 }

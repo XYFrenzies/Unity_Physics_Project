@@ -5779,7 +5779,7 @@ GameObject:
   - component: {fileID: 298745076}
   - component: {fileID: 298745075}
   m_Layer: 5
-  m_Name: Nuke Button
+  m_Name: Freeze Speed Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5850,7 +5850,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1260906237}
         m_TargetAssemblyTypeName: WallPowers, Assembly-CSharp
-        m_MethodName: Nuke
+        m_MethodName: HalfEnemyMoveSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6644,6 +6644,7 @@ GameObject:
   - component: {fileID: 454364490}
   - component: {fileID: 454364489}
   - component: {fileID: 454364488}
+  - component: {fileID: 454364491}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6716,6 +6717,19 @@ Transform:
   m_Father: {fileID: 866632402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 6.158, y: 0, z: 0}
+--- !u!114 &454364491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454364487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f892d1cf61d6df45817c0ff0f0f9036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mat: {fileID: 2100000, guid: a19c4c43b96f99342be46f73ae33c9d1, type: 2}
 --- !u!4 &477531218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -9061056755950536901, guid: 027b3f5782e6ea542b179463ce3c81f6, type: 3}
@@ -7087,6 +7101,7 @@ GameObject:
   - component: {fileID: 666985050}
   - component: {fileID: 666985051}
   - component: {fileID: 666985052}
+  - component: {fileID: 666985053}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7197,6 +7212,22 @@ MonoBehaviour:
   alphaMat: {fileID: 2100000, guid: d6e296620e042c34d9cbbaed645b8493, type: 2}
   m_shader: {fileID: 4800000, guid: 217f89af44d77c64a99b202ddf2e384d, type: 3}
   rayCastRange: 5
+--- !u!114 &666985053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666985046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239d5f7f98c4dc340891737d55b585d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_frozenEffectPower: 0.5
+  m_freezingLengthTimer: 2
+  m_mat: {fileID: 2100000, guid: a19c4c43b96f99342be46f73ae33c9d1, type: 2}
+  m_hasCompletedFreeze: 1
 --- !u!1001 &716723394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8176,7 +8207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nuke
+  m_Text: Freeze Speed
 --- !u!222 &893147929
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10191,7 +10222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -47.5, y: 5.38}
+  m_AnchoredPosition: {x: -48.47, y: 5.38}
   m_SizeDelta: {x: 701.78064, y: 688.3679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260906237
@@ -10211,7 +10242,7 @@ MonoBehaviour:
   m_doublePointsPowerCost: 600
   m_largerRadiusCost: 800
   m_largerRadius: 1
-  m_nukeCost: 9000
+  m_freezeEnemyMovementSpeedCost: 0
   m_distFromBoard: 50
 --- !u!4 &1263445544 stripped
 Transform:

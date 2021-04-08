@@ -10,7 +10,7 @@ public class WallPowers : MonoBehaviour
     [SerializeField] private int m_doublePointsPowerCost = 600;
     [SerializeField] private int m_largerRadiusCost = 800;
     [SerializeField] private int m_largerRadius = 1;
-    [SerializeField] private int m_nukeCost = 9000;
+    [SerializeField] private int m_freezeEnemyMovementSpeedCost = 900;
     [SerializeField] private float m_distFromBoard = 10;
     private GraphicRaycaster m_Raycaster;
     private PointerEventData m_PointerEventData;
@@ -52,11 +52,12 @@ public class WallPowers : MonoBehaviour
         }
     }
 
-    public void Nuke() 
+    public void HalfEnemyMoveSpeed() 
     {
-        if (RoundSystem.sharedInstance.pointTotal >= m_nukeCost)
+        if (RoundSystem.sharedInstance.pointTotal >= m_freezeEnemyMovementSpeedCost)
         {
-            RoundSystem.sharedInstance.pointTotal -= m_nukeCost;
+            TimeFrozenOverlay.sharedInstance.m_hasCompletedFreeze = false;
+            RoundSystem.sharedInstance.pointTotal -= m_freezeEnemyMovementSpeedCost;
         }
     }
     void Update()
