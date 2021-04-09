@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 23/2/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject m_riflePNG = null;

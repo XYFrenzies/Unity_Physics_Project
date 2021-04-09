@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 25/2/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class Raycast : MonoBehaviour
 {
     [SerializeField] private Image m_img = null;

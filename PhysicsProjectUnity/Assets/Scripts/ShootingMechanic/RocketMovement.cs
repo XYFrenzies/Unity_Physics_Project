@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 4/3/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class RocketMovement : MonoBehaviour
 {
     [SerializeField] private float m_movespeed = 300.0f;

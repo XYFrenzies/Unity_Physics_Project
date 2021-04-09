@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 25/2/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Transform spawnLoc = null;

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 4/3/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class WreckingBall : MonoBehaviour
 {
     [SerializeField] private Text m_txt = null;

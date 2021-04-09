@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 5/3/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class InstructionsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject m_startMenu = null;

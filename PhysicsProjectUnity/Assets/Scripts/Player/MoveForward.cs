@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 24/2/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class MoveForward : MonoBehaviour
 {
     [SerializeField] private GameObject shotPos = null;

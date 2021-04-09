@@ -5676,7 +5676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 24.388275, y: 83.645996}
+  m_AnchoredPosition: {x: 24.388306, y: 83.645996}
   m_SizeDelta: {x: 156.76727, y: 78.877594}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &213116143
@@ -7102,6 +7102,7 @@ GameObject:
   - component: {fileID: 666985051}
   - component: {fileID: 666985052}
   - component: {fileID: 666985053}
+  - component: {fileID: 666985054}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7228,6 +7229,22 @@ MonoBehaviour:
   m_freezingLengthTimer: 2
   m_mat: {fileID: 2100000, guid: a19c4c43b96f99342be46f73ae33c9d1, type: 2}
   m_hasCompletedFreeze: 1
+  freezeMatReturn: 0
+--- !u!114 &666985054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666985046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbccf5df3f2ae340bdbc24dcd9c7452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mat: {fileID: 2100000, guid: aeb6130d1a3270545b9064362febabfd, type: 2}
+  m_blueMat: {fileID: -5993909935191025681, guid: 2dc526a87c49416478b13f971cef333c, type: 3}
+  m_darkMat: {fileID: -2477152504647978758, guid: 2dc526a87c49416478b13f971cef333c, type: 3}
 --- !u!1001 &716723394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8985,7 +9002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 4.950592, y: 80.54598}
+  m_AnchoredPosition: {x: 4.9505615, y: 80.54598}
   m_SizeDelta: {x: 192.18887, y: 72.632065}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1038551583
@@ -10237,12 +10254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a510a6fd1356f45aaea6e2dd64fc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wallPowerSpeedCost: 0
+  m_wallPowerSpeedCost: 500
   m_movementSpeed: 2
   m_doublePointsPowerCost: 600
   m_largerRadiusCost: 800
   m_largerRadius: 1
-  m_freezeEnemyMovementSpeedCost: 0
+  m_freezeEnemyMovementSpeedCost: 900
   m_distFromBoard: 50
 --- !u!4 &1263445544 stripped
 Transform:
@@ -10961,7 +10978,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df22b2c29de28dd4484511a44b5ea17d, type: 2}
+  - {fileID: 2100000, guid: 29c0eb42f3bfe2f4c873832772723436, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11595,7 +11612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 2.3882751, y: 77.7}
+  m_AnchoredPosition: {x: 2.3883057, y: 77.7}
   m_SizeDelta: {x: 200.1272, y: 155.37598}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1567064856

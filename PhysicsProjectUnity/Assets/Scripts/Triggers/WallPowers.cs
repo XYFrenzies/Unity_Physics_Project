@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 1/4/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class WallPowers : MonoBehaviour
 {
     [SerializeField] private int m_wallPowerSpeedCost = 500;

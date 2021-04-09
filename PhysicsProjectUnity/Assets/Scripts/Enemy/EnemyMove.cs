@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 11/3/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class EnemyMove : MonoBehaviour
 {
     private NavMeshAgent nav = null;

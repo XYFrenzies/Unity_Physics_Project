@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Name of Creater: Benjamin McDonald
+/// Date of Creation: 24/2/2021
+/// Last Modified: 9/4/2021
+/// </summary>
 public class RagdollTrigger : MonoBehaviour
 {
     [SerializeField] private float m_ragDollSpeed = 10;
@@ -18,6 +22,8 @@ public class RagdollTrigger : MonoBehaviour
         Rigidbody objRB = GetComponent<Rigidbody>();
         if (other.CompareTag("Enemy") && r != null && (this.CompareTag("Bullet") || this.CompareTag("WB")))
         {
+            if (this.CompareTag("WB"))
+                this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_RimColor", Color.white);
             r.RagdollOn = true;
             if (r.isCollided == true && r.isHit == false)
             {
@@ -40,8 +46,14 @@ public class RagdollTrigger : MonoBehaviour
         }
         else if (this.CompareTag("WB"))
         {
+            this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_RimColor", Color.white);
             Collider[] collider = Physics.OverlapSphere(gameObject.transform.position, WreckingBall.sharedInstance.explosiveRadius, ~LayerMask.GetMask("Barrier"));
             WreckingBall.sharedInstance.MultiForce(collider);
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (this.CompareTag("WB"))
+            this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_RimColor", Color.black);
     }
 }
